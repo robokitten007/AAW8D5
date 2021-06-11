@@ -30,8 +30,7 @@ function argSum() {
 // Function.prototype.myBind = function(ctx, ...bindArgs){
     
 // const that = this;
-// // const args = arguments;
-// // console.log(arguments)
+
 // return function(...callArgs){
 
 //     return that.apply(ctx, bindArgs.concat(callArgs));
@@ -40,10 +39,12 @@ function argSum() {
 // }
 
 Function.prototype.myBind = function(ctx){
-    let bindArgs = Array.from(arguments);
+    let bindArgs = Array.from(arguments).slice(1);
+    // console.log(`bindArg is ${bindArgs}`)
     let that = this;
 return function(){
     callArgs = Array.from(arguments);
+    // console.log(`callArg is ${callArgs}`)
     return that.apply(ctx, bindArgs.concat(callArgs));
 }
 
